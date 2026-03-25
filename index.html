@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portal Loker Sumbar</title>
+  <link rel="icon" href="https://digilapipk.sumbarprov.go.id/assets/img/sumbar.png" sizes="32x32" />
+  <meta name="google-site-verification" content="SrTZawFSaLAONuV52vjH13dAEw3zOeO0J7W9G7wwpi8" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <style>
+    :root {
+      --green: #198754;
+      --green-dark: #146c43;
+      --green-light: #d1e7dd;
+    }
+    body { font-family: 'Segoe UI', sans-serif; background: #f8f9fa; }
+
+    /* ===== NAVBAR ===== */
+    .navbar {
+      background: #fff !important;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      padding: 8px 0;
+    }
+    .navbar-brand img { width: 38px; height: 38px; object-fit: contain; margin-right: 4px; }
+    .navbar-brand .brand-text {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--green);
+      letter-spacing: 1px;
+      line-height: 1;
+      display: block;
+    }
+    .navbar-nav .nav-link {
+      color: #444 !important;
+      font-size: 0.88rem;
+      font-weight: 500;
+      padding: 6px 12px !important;
+      border-radius: 6px;
+      transition: background 0.18s, color 0.18s;
+    }
+    .navbar-nav .nav-link:hover,
+    .navbar-nav .nav-link.active {
+      color: var(--green) !important;
+      background: var(--green-light);
+    }
+    .btn-daftar {
+      background: var(--green);
+      color: #fff !important;
+      border-radius: 6px;
+      padding: 6px 18px !important;
+      font-weight: 600;
+      font-size: 0.88rem;
+    }
+    .btn-daftar:hover { background: var(--green-dark) !important; color: #fff !important; }
+    .btn-login-nav {
+      border: 2px solid var(--green) !important;
+      color: var(--green) !important;
+      border-radius: 6px;
+      padding: 4px 16px !important;
+      font-weight: 600;
+      font-size: 0.88rem;
+    }
+    .btn-login-nav:hover { background: var(--green-light) !important; }
+
+    /* ===== HERO ===== */
+    .hero-section {
+      background: url('https://digilapipk.sumbarprov.go.id/assets/img/sumbar-bg2.jpeg') center center / cover no-repeat;
+      padding: 72px 0 60px;
+      text-align: center;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-section::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: rgba(10, 60, 30, 0.62);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .hero-section .container {
+      position: relative;
+      z-index: 1;
+    }
+    .hero-section h1 {
+      font-size: 2.1rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    }
+    .hero-section p.hero-sub {
+      font-size: 1rem;
+      opacity: 0.9;
+      margin-bottom: 32px;
+    }
+
+    /* Search */
+    .search-box {
+      max-width: 700px;
+      margin: 0 auto 20px;
+      background: #fff;
+      border-radius: 10px;
+      display: flex;
+      overflow: hidden;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.18);
+    }
+    .search-box select {
+      border: none;
+      border-right: 1px solid #dee2e6;
+      padding: 0 14px;
+      font-size: 0.87rem;
+      color: #555;
+      background: #fff;
+      outline: none;
+      min-width: 148px;
+      cursor: pointer;
+    }
+    .search-box input[type="text"] {
+      flex: 1;
+      border: none;
+      padding: 14px 18px;
+      font-size: 0.93rem;
+      outline: none;
+      color: #333;
+    }
+    .search-box button {
+      background: var(--green);
+      color: #fff;
+      border: none;
+      padding: 0 28px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.18s;
+      white-space: nowrap;
+    }
+    .search-box button:hover { background: var(--green-dark); }
+
+    /* Category pills */
+    .cat-pills {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 7px;
+      margin-top: 4px;
+    }
+    .cat-pills .badge-pill {
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.28);
+      border-radius: 20px;
+      padding: 5px 15px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: background 0.18s;
+    }
+    .cat-pills .badge-pill:hover,
+    .cat-pills .badge-pill.active { background: rgba(255,255,255,0.32); }
+
+    /* ===== STATISTIK ===== */
+    .section-block { padding: 56px 0 32px; }
+    .section-title-wrap { text-align: center; margin-bottom: 36px; }
+    .section-title-wrap h2 { font-size: 1.5rem; font-weight: 700; color: #1a1a1a; margin-bottom: 8px; }
+    .section-title-wrap .title-divider {
+      width: 56px; height: 3px; background: var(--green);
+      margin: 0 auto 10px; border-radius: 2px;
+    }
+    .section-title-wrap p { color: #888; font-size: 0.87rem; }
+
+    .stat-card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 28px 20px 24px;
+      text-align: center;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      border-top: 4px solid var(--green);
+      transition: transform 0.2s, box-shadow 0.2s;
+      height: 100%;
+    }
+    .stat-card:hover { transform: translateY(-4px); box-shadow: 0 10px 28px rgba(0,0,0,0.1); }
+    .stat-icon {
+      width: 54px; height: 54px;
+      background: var(--green-light);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 14px;
+      font-size: 1.3rem;
+      color: var(--green);
+    }
+    .stat-label { font-size: 0.82rem; color: #888; margin-bottom: 2px; }
+    .stat-sublabel { font-size: 0.75rem; color: #aaa; margin-bottom: 10px; }
+    .stat-number { font-size: 2.1rem; font-weight: 800; color: var(--green); line-height: 1.1; }
+    .stat-unit { font-size: 0.82rem; color: #888; margin-top: 4px; }
+
+    /* ===== LOWONGAN ===== */
+    .lowongan-section { padding: 16px 0 60px; }
+
+    .filter-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 28px;
+    }
+    .filter-row select {
+      padding: 8px 14px;
+      border: 1px solid #dee2e6;
+      border-radius: 8px;
+      font-size: 0.87rem;
+      color: #555;
+      outline: none;
+      background: #fff;
+    }
+    .filter-row input {
+      flex: 1; min-width: 180px;
+      padding: 8px 14px;
+      border: 1px solid #dee2e6;
+      border-radius: 8px;
+      font-size: 0.87rem;
+      outline: none;
+      background: #fff;
+    }
+    .filter-row .btn-cari {
+      background: var(--green);
+      color: #fff;
+      border: none;
+      padding: 8px 22px;
+      border-radius: 8px;
+      font-size: 0.87rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.18s;
+    }
+    .filter-row .btn-cari:hover { background: var(--green-dark); }
+
+    /* Job card */
+    .job-card {
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+      transition: transform 0.2s, box-shadow 0.2s;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    .job-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 28px rgba(0,0,0,0.1);
+      color: inherit;
+      text-decoration: none;
+    }
+    .job-card .job-img {
+      width: 100%;
+      height: 155px;
+      object-fit: cover;
+      object-position: center;
+      background: #e9ecef;
+      display: block;
+    }
+    .job-card .job-body {
+      padding: 16px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .job-card .job-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-bottom: 6px;
+      text-transform: capitalize;
+    }
+    .job-card .job-company {
+      font-size: 0.8rem;
+      color: var(--green);
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+    .job-card .job-meta {
+      font-size: 0.78rem;
+      color: #888;
+      display: flex;
+      align-items: flex-start;
+      gap: 5px;
+      margin-bottom: 3px;
+    }
+    .job-card .job-meta i { margin-top: 2px; flex-shrink: 0; }
+    .job-card .job-salary {
+      font-size: 0.8rem;
+      color: #555;
+      margin-top: 8px;
+    }
+    .badge-disnaker {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: var(--green-light);
+      color: var(--green);
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 20px;
+      margin-top: 10px;
+      width: fit-content;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #212529;
+      color: #adb5bd;
+      text-align: center;
+      padding: 18px 20px;
+      font-size: 0.82rem;
+    }
+    footer strong { color: #fff; }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero-section h1 { font-size: 1.6rem; }
+      .search-box { flex-direction: column; border-radius: 10px; }
+      .search-box select { border-right: none; border-bottom: 1px solid #dee2e6; width: 100%; padding: 12px 14px; }
+      .search-box button { padding: 12px; width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar navbar-expand-lg navbar-light">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+      <img src="https://digilapipk.sumbarprov.go.id/assets/img/sumbar.png" alt="Logo Sumbar"/>
+      <span class="brand-text">SUMBAR</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMain">
+      <ul class="navbar-nav me-auto ms-3 gap-1">
+        <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Registrasi Perusahaan</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Registrasi BKK</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Lowongan</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Hubungi</a></li>
+      </ul>
+      <div class="d-flex align-items-center gap-2">
+        <a href="#" class="nav-link btn-daftar">Daftar</a>
+        <a href="#" class="nav-link btn-login-nav">Login</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero-section">
+  <div class="container">
+    <h1>Portal Lowongan Pekerjaan Sumbar</h1>
+    <p class="hero-sub">Temukan Pekerjaan, Perusahaan &amp; Peluang Karir Di Lingkungan Provinsi Sumatera Barat</p>
+
+    <div class="search-box">
+      <select>
+        <option value="">Semua type</option>
+        <option>Programmer</option>
+        <option>Desainer</option>
+        <option>Jasa</option>
+        <option>Operator</option>
+        <option>Teknisi</option>
+        <option>Pendidik</option>
+        <option>Pegawai</option>
+        <option>Supir</option>
+        <option>Animator</option>
+        <option>Apoteker</option>
+        <option>Lainnya</option>
+      </select>
+      <input type="text" placeholder="Cari lowongan pekerjaan..."/>
+      <button type="button"><i class="fa fa-search me-1"></i> Cari</button>
+    </div>
+
+    <div class="cat-pills">
+      <span class="badge-pill active">Semua type</span>
+      <span class="badge-pill">Programmer</span>
+      <span class="badge-pill">Desainer</span>
+      <span class="badge-pill">Jasa</span>
+      <span class="badge-pill">Operator</span>
+      <span class="badge-pill">Teknisi</span>
+      <span class="badge-pill">Pendidik</span>
+      <span class="badge-pill">Pegawai</span>
+      <span class="badge-pill">Supir</span>
+      <span class="badge-pill">Animator</span>
+      <span class="badge-pill">Apoteker</span>
+      <span class="badge-pill">Lainnya</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== STATISTIK TERKINI ===== -->
+<div class="section-block">
+  <div class="container">
+    <div class="section-title-wrap">
+      <h2>Statistik Terkini</h2>
+      <div class="title-divider"></div>
+      <p>Statistik Data Terbaru &nbsp; Portal Lowongan Pekerjaan Sumbar &nbsp; Hari Ini</p>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-6 col-md-3">
+        <div class="stat-card">
+          <div class="stat-icon"><i class="fa fa-users"></i></div>
+          <div class="stat-label">Jumlah Data Pengunjung</div>
+          <div class="stat-sublabel">Total Pengunjung</div>
+          <div class="stat-number">123.456</div>
+          <div class="stat-unit">Orang</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="stat-card">
+          <div class="stat-icon"><i class="fa fa-user-tie"></i></div>
+          <div class="stat-label">Jumlah Pelamar Kerja Terdaftar</div>
+          <div class="stat-sublabel">Total Pelamar</div>
+          <div class="stat-number">3.517</div>
+          <div class="stat-unit">Orang</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="stat-card">
+          <div class="stat-icon"><i class="fa fa-building"></i></div>
+          <div class="stat-label">Jumlah Perusahaan Terdaftar</div>
+          <div class="stat-sublabel">Total Perusahaan</div>
+          <div class="stat-number">24</div>
+          <div class="stat-unit">Unit</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="stat-card">
+          <div class="stat-icon"><i class="fa fa-briefcase"></i></div>
+          <div class="stat-label">Jumlah Lowongan Tersedia</div>
+          <div class="stat-sublabel">Total Lowongan</div>
+          <div class="stat-number">25</div>
+          <div class="stat-unit">Lowongan</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== DAFTAR LOWONGAN ===== -->
+<div class="lowongan-section">
+  <div class="container">
+    <div class="section-title-wrap">
+      <h2>Daftar Lowongan Pekerjaan</h2>
+      <div class="title-divider"></div>
+      <p>Temukan Informasi Lowongan Pekerjaan dan Peluang Karir disini</p>
+    </div>
+
+    <div class="filter-row">
+      <select>
+        <option value="">Semua type</option>
+        <option>Programmer</option>
+        <option>Desainer</option>
+        <option>Jasa</option>
+        <option>Operator</option>
+        <option>Teknisi</option>
+        <option>Pendidik</option>
+        <option>Pegawai</option>
+        <option>Supir</option>
+        <option>Animator</option>
+        <option>Apoteker</option>
+        <option>Lainnya</option>
+      </select>
+      <input type="text" placeholder="Cari lowongan..."/>
+      <button class="btn-cari"><i class="fa fa-search me-1"></i> Cari</button>
+    </div>
+
+    <div class="row g-4">
+
+      <!-- 1 -->
+      <div class="col-12 col-sm-6 col-lg-4">
+        <a href="#" class="job-card">
+          <img class="job-img" src="https://digilapipk.sumbarprov.go.id/storage/informasi-lowongan/default/1.jpg"
+               onerror="this.src='https://placehold.co/400x155/198754/ffffff?text=Lowongan'" alt="finance"/>
+          <div class="job-body">
+            <div class="job-title">finance&amp;accouting</div>
+            <div class="job-company"><i class="fa fa-building fa-xs me-1"></i>Dinas Tenaga Kerja Sumbar</div>
+            <div class="job-meta"><i class="fa fa-map-marker-alt fa-xs"></i>bukittinggi/padang</div>
+            <div class="job-meta"><i class="fa fa-calendar fa-xs"></i>12/03/2026 s/d 12/03/2026</div>
+            <div class="job-salary">Estimasi gaji : Rp.<strong>dirahasiakan</strong></div>
+            <span class="badge-disnaker"><i class="fa fa-check-circle fa-xs"></i> Terverifikasi Disnaker</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- 2 -->
+      <div class="col-12 col-sm-6 col-lg-4">
+        <a href="#" class="job-card">
+          <img class="job-img" src="https://digilapipk.sumbarprov.go.id/storage/informasi-lowongan/default/1.jpg"
+               onerror="this.src='https://placehold.co/400x155/198754/ffffff?text=Lowongan'" alt="full time teacher"/>
+          <div class="job-body">
+            <div class="job-title">full time teacher</div>
+            <div class="job-company"><i class="fa fa-building fa-xs me-1"></i>Dinas Tenaga Kerja Sumbar</div>
+            <div class="job-meta"><i class="fa fa-map-marker-alt fa-xs"></i>bukittinggi</div>
+            <div class="job-meta"><i class="fa fa-calendar fa-xs"></i>12/03/2026 s/d 12/03/2026</div>
+            <div class="job-salary">Estimasi gaji : Rp.<strong>dirahasiakan</strong></div>
+            <span class="badge-disnaker"><i class="fa fa-check-circle fa-xs"></i> Terverifikasi Disnaker</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- 3 -->
+      <div class="col-12 col-sm-6 col-lg-4">
+        <a href="#" class="job-card">
+          <img class="job-img" src="https://digilapipk.sumbarprov.go.id/storage/informasi-lowongan/default/1.jpg"
+               onerror="this.src='https://placehold.co/400x155/198754/ffffff?text=Lowongan'" alt="part time teacher"/>
+          <div class="job-body">
+            <div class="job-title">part time teacher</div>
+            <div class="job-company"><i class="fa fa-building fa-xs me-1"></i>Dinas Tenaga Kerja Sumbar</div>
+            <div class="job-meta"><i class="fa fa-map-marker-alt fa-xs"></i>bukittinggi</div>
+            <div class="job-meta"><i class="fa fa-calendar fa-xs"></i>12/03/2026 s/d 12/03/2026</div>
+            <div class="job-salary">Estimasi gaji : Rp.<strong>dirahasiakan</strong></div>
+            <span class="badge-disnaker"><i class="fa fa-check-circle fa-xs"></i> Terverifikasi Disnaker</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- 4 -->
+      <div class="col-12 col-sm-6 col-lg-4">
+        <a href="#" class="job-card">
+          <img class="job-img" src="https://digilapipk.sumbarprov.go.id/storage/informasi-lowongan/default/1.jpg"
+               onerror="this.src='https://placehold.co/400x155/198754/ffffff?text=Lowongan'" alt="office boy"/>
+          <div class="job-body">
+            <div class="job-title">office boy</div>
+            <div class="job-company"><i class="fa fa-building fa-xs me-1"></i>Dinas Tenaga Kerja Sumbar</div>
+            <div class="job-meta"><i class="fa fa-map-marker-alt fa-xs"></i>bukittinggi</div>
+            <div class="job-meta"><i class="fa fa-calendar fa-xs"></i>12/03/2026 s/d 12/03/2026</div>
+            <div class="job-salary">Estimasi gaji : Rp.<strong>dirahasiakan</strong></div>
+            <span class="badge-disnaker"><i class="fa fa-check-circle fa-xs"></i> Terverifikasi Disnaker</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- 5 -->
+      <div class="col-12 col-sm-6 col-lg-4">
+        <a href="#" class="job-card">
+          <img class="job-img" src="https://digilapipk.sumbarprov.go.id/storage/informasi-lowongan/default/1.jpg"
+               onerror="this.src='https://placehold.co/400x155/198754/ffffff?text=Lowongan'" alt="Sales Asuransi"/>
+          <div class="job-body">
+            <div class="job-title">Sales Asuransi Bancasssurance</div>
+            <div class="job-company"><i class="fa fa-building fa-xs me-1"></i>Dinas Tenaga Kerja Sumbar</div>
+            <div class="job-meta"><i class="fa fa-map-marker-alt fa-xs"></i>Padang</div>
+            <div class="job-meta"><i class="fa fa-calendar fa-xs"></i>12/03/2026 s/d 12/03/2026</div>
+            <div class="job-salary">Estimasi gaji : Rp.<strong>Rp. 5.000.000 - Rp. 7.000.000</strong></div>
+            <span class="badge-disnaker"><i class="fa fa-check-circle fa-xs"></i> Terverifikasi Disnaker</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- 6 -->
+      <div class="col-12 col-sm-6 col-lg-4">
+        <a href="#" class="job-card">
+          <img class="job-img" src="https://digilapipk.sumbarprov.go.id/storage/informasi-lowongan/default/1.jpg"
+               onerror="this.src='https://placehold.co/400x155/198754/ffffff?text=Lowongan'" alt="Crew Outlet"/>
+          <div class="job-body">
+            <div class="job-title">Crew Outlet</div>
+            <div class="job-company"><i class="fa fa-building fa-xs me-1"></i>Dinas Tenaga Kerja Sumbar</div>
+            <div class="job-meta"><i class="fa fa-map-marker-alt fa-xs"></i>Rumah Sakit Universitas Andalas (Padang)</div>
+            <div class="job-meta"><i class="fa fa-calendar fa-xs"></i>12/03/2026 s/d 12/03/2026</div>
+            <div class="job-salary">Estimasi gaji : Rp.<strong>Rp. 1.500.000 - Rp. 1.700.000 per bulan</strong></div>
+            <span class="badge-disnaker"><i class="fa fa-check-circle fa-xs"></i> Terverifikasi Disnaker</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- 7 -->
+      <div class="col-12 col-sm-6 col-lg-4">
+        <a href="#" class="job-card">
+          <img class="job-img" src="https://digilapipk.sumbarprov.go.id/storage/informasi-lowongan/default/1.jpg"
+               onerror="this.src='https://placehold.co/400x155/198754/ffffff?text=Lowongan'" alt="kasir dan juru masak"/>
+          <div class="job-body">
+            <div class="job-title">kasir dan juru masak</div>
+            <div class="job-company"><i class="fa fa-building fa-xs me-1"></i>Dinas Tenaga Kerja Sumbar</div>
+            <div class="job-meta"><i class="fa fa-map-marker-alt fa-xs"></i>KOTA PADANG, SUMATERA BARAT</div>
+            <div class="job-meta"><i class="fa fa-calendar fa-xs"></i>12/03/2026 s/d 12/03/2026</div>
+            <div class="job-salary">Estimasi gaji : Rp.<strong>Dirahasiakan</strong></div>
+            <span class="badge-disnaker"><i class="fa fa-check-circle fa-xs"></i> Terverifikasi Disnaker</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- 8 -->
+      <div class="col-12 col-sm-6 col-lg-4">
+        <a href="#" class="job-card">
+          <img class="job-img" src="https://digilapipk.sumbarprov.go.id/storage/informasi-lowongan/default/1.jpg"
+               onerror="this.src='https://placehold.co/400x155/198754/ffffff?text=Lowongan'" alt="satpam"/>
+          <div class="job-body">
+            <div class="job-title">satpam</div>
+            <div class="job-company"><i class="fa fa-building fa-xs me-1"></i>Dinas Tenaga Kerja Sumbar</div>
+            <div class="job-meta"><i class="fa fa-map-marker-alt fa-xs"></i>KOTA PADANG, SUMATERA BARAT</div>
+            <div class="job-meta"><i class="fa fa-calendar fa-xs"></i>12/03/2026 s/d 12/03/2026</div>
+            <div class="job-salary">Estimasi gaji : Rp.<strong>Dirahasiakan</strong></div>
+            <span class="badge-disnaker"><i class="fa fa-check-circle fa-xs"></i> Terverifikasi Disnaker</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- 9 -->
+      <div class="col-12 col-sm-6 col-lg-4">
+        <a href="#" class="job-card">
+          <img class="job-img" src="https://digilapipk.sumbarprov.go.id/storage/informasi-lowongan/default/1.jpg"
+               onerror="this.src='https://placehold.co/400x155/198754/ffffff?text=Lowongan'" alt="koordinator"/>
+          <div class="job-body">
+            <div class="job-title">kodinator kota/kabupaten, TFL teknis, TFL pemberdayaan</div>
+            <div class="job-company"><i class="fa fa-building fa-xs me-1"></i>Dinas Tenaga Kerja Sumbar</div>
+            <div class="job-meta"><i class="fa fa-map-marker-alt fa-xs"></i>KOTA PADANG, SUMATERA BARAT</div>
+            <div class="job-meta"><i class="fa fa-calendar fa-xs"></i>12/03/2026 s/d 12/03/2026</div>
+            <div class="job-salary">Estimasi gaji : Rp.<strong>Dirahasiakan</strong></div>
+            <span class="badge-disnaker"><i class="fa fa-check-circle fa-xs"></i> Terverifikasi Disnaker</span>
+          </div>
+        </a>
+      </div>
+
+    </div><!-- /row -->
+  </div><!-- /container -->
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  © 2023 <strong>Disnakertrans Sumbar</strong>. All Rights Reserved
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+<script>
+  document.querySelectorAll('.cat-pills .badge-pill').forEach(function(pill) {
+    pill.addEventListener('click', function() {
+      document.querySelectorAll('.cat-pills .badge-pill').forEach(p => p.classList.remove('active'));
+      this.classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>
